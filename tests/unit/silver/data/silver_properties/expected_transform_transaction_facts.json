@@ -1,0 +1,11 @@
+[
+  {
+    "property_id": "BER-TEM-1",
+    "transaction_id": "TX-TEM-1-2020",
+    "sale_price_eur": 589389,
+    "transaction_date": "2020-03-28",
+    "transaction_price_per_sqm_eur": 5286,
+    "interest_rate_percent": 3.3,
+    "demand_index": 56
+  }
+]

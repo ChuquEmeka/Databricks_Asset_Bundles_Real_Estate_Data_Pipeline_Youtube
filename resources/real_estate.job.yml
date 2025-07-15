@@ -1,0 +1,32 @@
+bundle:
+  name: real_estate_jobs
+
+resources:
+  jobs:
+    real_estate_jobs:
+      name: real_estate_jobs
+      trigger:
+        periodic:
+          interval: 1
+          unit: DAYS
+      email_notifications:
+        on_failure:
+          - blessedemeks@gmail.com
+      tasks:
+        - task_key: neighborhood_insight_report
+          notebook_task:
+            notebook_path: ../src/jobs/tasks/neighborhood_insight_report.ipynb
+            base_parameters:
+              catalog: ${var.catalog}
+              schema: ${var.schema}
+              jobs_schema: ${var.jobs_schema}
+
+        - task_key: property_valuation_update
+          depends_on:
+            - task_key: neighborhood_insight_report
+          notebook_task:
+            notebook_path: ../src/jobs/tasks/property_valuation_update.ipynb
+            base_parameters:
+              catalog: ${var.catalog}
+              schema: ${var.schema}
+              jobs_schema: ${var.jobs_schema}

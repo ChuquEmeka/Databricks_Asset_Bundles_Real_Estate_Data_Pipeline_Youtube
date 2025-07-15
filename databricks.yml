@@ -1,0 +1,52 @@
+
+bundle:
+  name: real_estate
+  uuid: 67532511-031a-4f86-9069-5ac157378883
+
+variables:
+  data_bucket:
+    description: "GCS bucket name for raw data"
+  gcs_prefix:
+    description: "Prefix path inside the bucket"
+  catalog:
+    description: "Unity Catalog name for pipeline outputs"
+  schema:
+    description: "Schema name for pipeline outputs"
+  jobs_schema:
+    description: "Schema name for job outputs"
+  mode:
+    description: "Execution mode (development or production)"
+
+include:
+  - resources/*.yml
+  - resources/*/*.yml
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://2058154152779618.8.gcp.databricks.com
+    variables:
+      data_bucket: real-estate-data-dev
+      gcs_prefix: dev/raw/properties/year=2025/
+      catalog: real_estate_dev
+      schema: pipeline_dev
+      jobs_schema: real_estate_jobs_dev
+      mode: development
+
+  prod:
+    mode: production
+    workspace:
+      host: https://2041293835720014.4.gcp.databricks.com
+      root_path: /Workspace/Users/blessedemeks@gmail.com/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+      - user_name: blessedemeks@gmail.com
+        level: CAN_MANAGE
+    variables:
+      data_bucket: real-estate-data-prod2
+      gcs_prefix: prod/raw/properties/year=2025/
+      catalog: real_estate_prod
+      schema: pipeline_prod
+      jobs_schema: real_estate_jobs_prod
+      mode: production

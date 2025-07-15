@@ -1,0 +1,9 @@
+[
+  {
+    "borough": "Tempelhof",
+    "avg_median_income_eur": 48184.0,
+    "avg_population_density_per_sqm": 3860.0,
+    "avg_crime_rate_per_1000": 5.0,
+    "max_avg_price_per_sqm_2025_eur": 6100.0
+  }
+]

@@ -1,0 +1,36 @@
+name: 'CD - Deploy and Run in Prod on Merge'
+
+concurrency:
+  group: prod-deploy
+  cancel-in-progress: true
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy-and-run-prod:
+    name: 'Deploy & Run Bundle in Prod'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Databricks CLI v2
+        uses: databricks/setup-cli@main
+
+      - name: Install development dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Deploy bundle to prod
+        run: databricks bundle deploy
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_PROD_TOKEN }}
+          DATABRICKS_BUNDLE_ENV: prod
+
+      - name: Run production pipeline job
+        run: databricks bundle run real_estate_pipeline --refresh-all
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_PROD_TOKEN }}
+          DATABRICKS_BUNDLE_ENV: prod

@@ -1,0 +1,12 @@
+
+## PySpark for local pipeline testing
+pyspark==3.5.1
+pandas
+
+## pytest is the default package used for testing
+pytest
+
+## Dependencies for building wheel files
+setuptools
+wheel
+

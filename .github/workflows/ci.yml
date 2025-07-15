@@ -1,0 +1,45 @@
+
+
+name: 'CI - Deploy and Run in Dev'
+
+concurrency:
+  group: dev-deploy
+  cancel-in-progress: true
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+
+jobs:
+  deploy-and-run-dev:
+    name: 'Deploy & Run Bundle in Dev'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Databricks CLI v2
+        uses: databricks/setup-cli@main
+
+      - name: Install development dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Run tests
+        env:
+          PYTHONPATH: src:src/pipeline/silver:src/pipeline/bronze:src/pipeline/gold
+        run: pytest
+
+      - name: Deploy bundle to dev
+        run: databricks bundle deploy
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_DEV_TOKEN }}
+          DATABRICKS_BUNDLE_ENV: dev
+
+      - name: Run dev pipeline job
+        run: databricks bundle run real_estate_pipeline --refresh-all
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_DEV_TOKEN }}
+          DATABRICKS_BUNDLE_ENV: dev
