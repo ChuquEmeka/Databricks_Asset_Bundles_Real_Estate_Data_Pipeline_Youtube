@@ -162,8 +162,8 @@ You will learn:
 10. Note the workspace URLs
 
 ```bash
-https://2058154152779618.8.gcp.databricks.com  
-https://2041293835720014.4.gcp.databricks.com
+https://2058154152775441.7.gcp.databricks.com  
+https://2041293835728991.0.gcp.databricks.com
 ```
 
 ### Installing Tools for Databricks Development
@@ -209,8 +209,8 @@ databricks auth profiles
 
 Expected output:
 ```bash
-real-estate-dev https://2058154152779618.8.gcp.databricks.com YES  
-real-estate-prod https://2041293835720014.4.gcp.databricks.com YES
+real-estate-dev https://2058154152775441.7.gcp.databricks.com YES  
+real-estate-prod https://2041293835728991.0.gcp.databricks.com YES
 ```
 
 ### Optional Cleanup
