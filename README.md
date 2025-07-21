@@ -1,4 +1,4 @@
-# Step-by-Step Guide to Set Up and Run the Real Estate Pipeline with Databricks Asset Bundles on GCP
+# Step-by-Step Guide to Building and Running a Real Estate ELT Pipeline with Databricks Asset Bundles on GCP
 
 ## YouTube Playlist
 
