@@ -189,7 +189,7 @@ databricks auth login --profile real-estate-dev
 
 Enter:
 ```bash
-https://2058154152779618.8.gcp.databricks.com
+https://2058154152775441.7.gcp.databricks.com
 ```
 
 Authenticate to Prod Workspace:
@@ -199,7 +199,7 @@ databricks auth login --profile real-estate-prod
 
 Enter:
 ```bash
-https://2041293835720014.4.gcp.databricks.com
+https://2041293835728991.0.gcp.databricks.com
 ```
 
 Verify active profiles:
