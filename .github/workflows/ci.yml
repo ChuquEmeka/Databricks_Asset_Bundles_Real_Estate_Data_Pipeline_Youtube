@@ -1,5 +1,3 @@
-
-
 name: 'CI - Deploy and Run in Dev'
 
 concurrency:
@@ -9,8 +7,20 @@ concurrency:
 on:
   push:
     branches: [dev]
+    paths:
+      - 'src/**'
+      - 'resources/**'
+      - 'databricks.yml'
+      - 'requirements-dev.txt'
+      - 'tests/**'
   pull_request:
     branches: [dev]
+    paths:
+      - 'src/**'
+      - 'resources/**'
+      - 'databricks.yml'
+      - 'requirements-dev.txt'
+      - 'tests/**'
 
 jobs:
   deploy-and-run-dev:

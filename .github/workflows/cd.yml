@@ -7,6 +7,12 @@ concurrency:
 on:
   push:
     branches: [main]
+    paths:
+      - 'src/**'
+      - 'resources/**'
+      - 'databricks.yml'
+      - 'requirements-dev.txt'
+      - 'tests/**'
 
 jobs:
   deploy-and-run-prod:
